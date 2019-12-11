@@ -1,0 +1,43 @@
+# example
+stages:
+  - name: Jar file
+    # Conditions for stages
+    when:
+      branch: master
+      event: [ push, pull_request ]
+    # Multiple steps run concurrently
+    steps:
+      - runScriptConfig:
+          image: maven:3.6.3-jdk-11
+          shellScript: mvn clean install
+  - name: Docker image
+    steps:
+      - publishImageConfig:
+          dockerfilePath: ./target/Dockerfile
+          buildContext: ./target
+          tag: $CICD_GIT_BRANCH
+          # Optionally push to remote registry
+          pushRemote: true
+#          registry: reg.example.com
+#  - name: Deploy some workloads
+#    steps:
+#      - applyYamlConfig:
+#          path: ./deployment.yaml
+# branch conditions for the pipeline
+branch:
+  include: [ master, feature/*]
+  exclude: [ dev ]
+# timeout in minutes
+timeout: 30
+#notification:
+#  recipients:
+    - # Recipient
+#      recipient: "#mychannel"
+      # ID of Notifier
+#      notifier: "c-wdcsr:n-c9pg7"
+#    - recipient: "test@example.com"
+#      notifier: "c-wdcsr:n-lkrhd"
+  # Select which statuses you want the notification to be sent
+#  condition: ["Failed", "Success", "Changed"]
+  # Ability to override the default message (Optional)
+#  message: "my-message"
