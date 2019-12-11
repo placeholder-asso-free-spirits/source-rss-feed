@@ -18,7 +18,7 @@ stages:
           tag: $CICD_GIT_BRANCH
           # Optionally push to remote registry
           pushRemote: true
-#          registry: reg.example.com
+          registry: https://hub.docker.com/
 #  - name: Deploy some workloads
 #    steps:
 #      - applyYamlConfig:
