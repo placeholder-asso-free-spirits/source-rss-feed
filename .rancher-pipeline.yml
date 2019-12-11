@@ -2,9 +2,9 @@
 stages:
   - name: Jar file
     # Conditions for stages
-    when:
-      branch: master
-      event: [ push, pull_request ]
+#    when:
+#      branch: master
+#      event: [ push, pull_request ]
     # Multiple steps run concurrently
     steps:
       - runScriptConfig:
