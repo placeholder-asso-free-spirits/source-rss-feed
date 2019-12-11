@@ -9,7 +9,7 @@ stages:
     steps:
       - runScriptConfig:
           image: maven:3.6.3-jdk-11
-          shellScript: mvn clean install
+          shellScript: mvn -q clean install
   - name: Docker image
     steps:
       - publishImageConfig:
@@ -18,7 +18,7 @@ stages:
           tag: data-source-rss
           # Optionally push to remote registry
           pushRemote: true
-          registry: registry.hub.docker.com
+          registry: ogdabou-dockerhub
 #  - name: Deploy some workloads
 #    steps:
 #      - applyYamlConfig:
