@@ -18,7 +18,7 @@ stages:
           tag: data-source-rss
           # Optionally push to remote registry
           pushRemote: true
-          registry: https://hub.docker.com
+          registry: registry.hub.docker.com
 #  - name: Deploy some workloads
 #    steps:
 #      - applyYamlConfig:
