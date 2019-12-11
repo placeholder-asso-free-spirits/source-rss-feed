@@ -7,13 +7,9 @@ import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.ParsingFeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
-import fr.asso.placeholder.data.models.*;
-import fr.asso.placeholder.data.sources.rss.models.FeedTrack;
-import fr.asso.placeholder.data.sources.rss.models.RSSEntry;
-import fr.asso.placeholder.data.sources.rss.models.RSSEntryFactory;
-import fr.asso.placeholder.data.sources.rss.models.EntryTrack;
-import fr.asso.placeholder.data.sources.rss.redis.EntryTrackRepository;
-import fr.asso.placeholder.data.sources.rss.redis.FeedTrackRepository;
+import fr.asso.placeholder.data.sources.rss.models.*;
+import fr.asso.placeholder.data.sources.rss.repos.EntryTrackRepository;
+import fr.asso.placeholder.data.sources.rss.repos.FeedTrackRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -56,9 +52,9 @@ public class RSSSource {
     private final SimpleDateFormat dateFormat;
 
     @StreamListener(Processor.INPUT)
-    public void process(Source source) throws IOException, FeedException {
-        LOGGER.info("Handling feed {}",source.getRss().getUrl());
-        URL url = new URL(source.getRss().getUrl());
+    public void process(InputMessage message) throws IOException, FeedException {
+        LOGGER.info("Handling feed {}", message.getUrl());
+        URL url = new URL(message.getUrl());
         Optional<FeedTrack> feedTrack = feedTrackRepository.findById(url.toString());
 
         HttpURLConnection con = feedTrack.isPresent() ? prepareHttpConnection(url, feedTrack.get().getLastVisit())
@@ -70,7 +66,7 @@ public class RSSSource {
 
             for (Object entry : feed.getEntries()) {
                 SyndEntry syndEntry = (SyndEntryImpl) entry;
-                RSSEntry rssEntry = rssEntryFactory.getRssEntry(syndEntry, source);
+                RSSEntry rssEntry = rssEntryFactory.getRssEntry(syndEntry, message.getUrl());
                 LOGGER.info("Handling entry {}", rssEntry.getUri());
 
                 Optional<EntryTrack> entryTrack = entryTrackRepository.findById(rssEntry.getUri());

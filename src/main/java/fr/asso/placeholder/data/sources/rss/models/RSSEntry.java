@@ -1,6 +1,5 @@
 package fr.asso.placeholder.data.sources.rss.models;
 
-import fr.asso.placeholder.data.models.Source;
 import lombok.*;
 
 import java.util.Date;
@@ -21,7 +20,7 @@ public class RSSEntry {
     private List<RSSContent> contents;
     private List<RSSContent> authors;
     private List<RSSContent> contributors;
-    private Source source;
+    private String source;
     private List<DublinCoreModule> modules;
     private List<RSSContent> enclosures;
     private List<RSSCategory> categories;

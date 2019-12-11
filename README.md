@@ -34,13 +34,7 @@ Send a sample
 
 ```json
 {
-    "source": {
-      "name": "les-crises-fr",
-      "type": "rss",
-      "rss": {
-        "url": "https://feeds.feedburner.com/les-crises-fr"
-      }
-    }
+  "url": "https://feeds.feedburner.com/les-crises-fr",
 }
 ```
 

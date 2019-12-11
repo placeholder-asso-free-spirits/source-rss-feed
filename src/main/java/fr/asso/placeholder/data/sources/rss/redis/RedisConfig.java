@@ -1,6 +1,8 @@
 package fr.asso.placeholder.data.sources.rss.redis;
 
 import fr.asso.placeholder.data.sources.rss.RSSSourceConfig;
+import fr.asso.placeholder.data.sources.rss.repos.EntryTrackRepository;
+import fr.asso.placeholder.data.sources.rss.repos.FeedTrackRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

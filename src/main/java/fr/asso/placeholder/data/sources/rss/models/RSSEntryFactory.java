@@ -2,7 +2,6 @@ package fr.asso.placeholder.data.sources.rss.models;
 
 import com.sun.syndication.feed.module.DCModule;
 import com.sun.syndication.feed.synd.*;
-import fr.asso.placeholder.data.models.Source;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,7 +69,7 @@ public class RSSEntryFactory {
                 .collect(Collectors.toList());
     }
 
-    public RSSEntry getRssEntry(final SyndEntry syndEntry, Source source) {
+    public RSSEntry getRssEntry(final SyndEntry syndEntry, String source) {
         return RSSEntry
                 .builder()
                 .uri(syndEntry.getUri())

@@ -42,13 +42,6 @@
             <version>1.0</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>fr.asso.placeholder.data</groupId>
-            <artifactId>common-models</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
