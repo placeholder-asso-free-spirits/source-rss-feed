@@ -15,7 +15,7 @@ stages:
       - publishImageConfig:
           dockerfilePath: ./target/Dockerfile
           buildContext: ./target
-          tag: $CICD_GIT_BRANCH
+          tag: data-source-rss
           # Optionally push to remote registry
           pushRemote: true
           registry: https://hub.docker.com/
