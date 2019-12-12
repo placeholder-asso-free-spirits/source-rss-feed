@@ -53,7 +53,7 @@ See [application.yml](src/main/resources/application.yml) for an example
 ```
 
 ## Output Message
-[DublinCoreModule](src/main/java/fr/asso/placeholder/data/sources/rss/models/DublinCoreModule)
+[DublinCoreModule](src/main/java/fr/asso/placeholder/data/sources/rss/models/DublinCoreModule.java)
 ```json
 {
   "uri": "entry url",
