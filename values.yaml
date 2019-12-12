@@ -65,7 +65,8 @@ tolerations: []
 
 affinity: {}
 
-#application-config: "test"
+#applicationConfig: "test"
+
 applicationConfig:
   spring:
     cloud:

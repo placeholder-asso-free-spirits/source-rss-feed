@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  application.yml: {{ .Values.applicationConfig }}
+  application.yml: |
+    "{{ toYaml .Values.applicationConfig | nindent 4}}"
