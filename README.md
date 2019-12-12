@@ -34,7 +34,7 @@ Send a sample
 
 ```json
 {
-  "url": "https://feeds.feedburner.com/les-crises-fr",
+  "url": "https://feeds.feedburner.com/les-crises-fr"
 }
 ```
 
@@ -48,13 +48,8 @@ See [application.yml](src/main/resources/application.yml) for an example
 
 ```json
 {
-  "source": {
-    "name": "source-name",
-    "type": "rss",
-    "rss": {
-      "url": "https://feeds.url/"
-    }
-  }
+  "url": "https://feeds.com"
+}
 }
 ```
 
@@ -73,13 +68,7 @@ See [application.yml](src/main/resources/application.yml) for an example
   "contents": [{ "type": "html", "value": "<p>Some content</p>" }, ... ],
   "authors": [{ "type": "text", "value": "Jean Marie" }],
   "contributors": [{ "type": "text", "value": "Jean Marie" }],
-  "source":{
-    "name": "source-name",
-    "type": "rss",
-    "rss": {
-      "url": "https://feeds.url/"
-    }
-  },
+  "source": "https://feeds.url/",
   "modules": [{ }],
   "enclosures": [{ "url": "http://image.jpg", "type": "jpg", "length": "2134354"}],
   "categories": [{ "name": "Category 1", "taxonomyUri": ""}],
