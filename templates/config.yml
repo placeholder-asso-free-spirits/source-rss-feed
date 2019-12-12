@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}-configmap
 data:
   application.yml: |
-    "{{ toYaml .Values.applicationConfig | nindent 4}}"
+    {{ toYaml .Values.applicationConfig | nindent 4}}
