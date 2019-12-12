@@ -50,7 +50,6 @@ See [application.yml](src/main/resources/application.yml) for an example
 {
   "url": "https://feeds.com"
 }
-}
 ```
 
 ## Output Message
