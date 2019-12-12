@@ -17,8 +17,8 @@ stages:
           buildContext: ./target
           tag: data-source-rss
           # Optionally push to remote registry
-          pushRemote: true
-          registry: ogdabou-dockerhub
+#          pushRemote: true
+#          registry: ogdabou-dockerhub
 #  - name: Deploy some workloads
 #    steps:
 #      - applyYamlConfig:
