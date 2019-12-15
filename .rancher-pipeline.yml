@@ -9,7 +9,10 @@ stages:
     steps:
       - runScriptConfig:
           image: maven:3.6.3-jdk-11
-          shellScript: mvn -q clean install
+          shellScript: mvn -q clean install -Pkafka
+      - runScriptConfig:
+          image: maven:3.6.3-jdk-11
+          shellScript: mvn -q clean install -Prabbit
   - name: Docker image
     steps:
       - publishImageConfig:
