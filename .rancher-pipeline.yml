@@ -29,7 +29,7 @@ stages:
 #          path: ./deployment.yaml
 # branch conditions for the pipeline
 branch:
-  include: [ master, feature/*, pov_knative]
+  include: [ master, feature/*, poc_knative]
   exclude: [ dev ]
 # timeout in minutes
 timeout: 30
