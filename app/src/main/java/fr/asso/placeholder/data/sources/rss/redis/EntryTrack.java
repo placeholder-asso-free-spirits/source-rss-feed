@@ -1,4 +1,4 @@
-package fr.asso.placeholder.data.sources.rss.models;
+package fr.asso.placeholder.data.sources.rss.redis;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

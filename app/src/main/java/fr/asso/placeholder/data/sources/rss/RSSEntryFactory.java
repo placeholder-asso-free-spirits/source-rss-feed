@@ -1,7 +1,8 @@
-package fr.asso.placeholder.data.sources.rss.models;
+package fr.asso.placeholder.data.sources.rss;
 
 import com.sun.syndication.feed.module.DCModule;
 import com.sun.syndication.feed.synd.*;
+import fr.asso.placeholder.data.sources.rss.models.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

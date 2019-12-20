@@ -8,6 +8,8 @@ import com.sun.syndication.io.ParsingFeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 import fr.asso.placeholder.data.sources.rss.models.*;
+import fr.asso.placeholder.data.sources.rss.redis.EntryTrack;
+import fr.asso.placeholder.data.sources.rss.redis.FeedTrack;
 import fr.asso.placeholder.data.sources.rss.repos.EntryTrackRepository;
 import fr.asso.placeholder.data.sources.rss.repos.FeedTrackRepository;
 
