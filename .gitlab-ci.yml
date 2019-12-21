@@ -7,6 +7,13 @@ java:
   stage: build
   image: maven:3.6.3-jdk-11
   script: mvn -q clean install
+  artifacts:
+    paths:
+      - target/*.jar
+      - api/target/*.jar
+      - api/target/Dockerfile
+      - app/target/*.jar
+      - app/target/Dockerfile
 
 .docker-java: &dockerize
   stage: dockerize
