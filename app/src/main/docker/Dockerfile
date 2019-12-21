@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11-openj9
+FROM adoptopenjdk/openjdk11-openj9:alpine-jre
 
 WORKDIR /opt/app
 
