@@ -1,41 +1,66 @@
 stages:
   - build
   - dockerize
-  - deploy
+#  - deploy
 
 java:
   stage: build
   image: maven:3.6.3-jdk-11
   script: mvn -q clean install
 
-docker-api:
+docker-java: &dockerize
   stage: dockerize
-  image: gcr.io/kaniko-project/executor:debug
-  script:
-    - cd api/target
-    - docker build -t ${CI_REGISTRY_IMAGE}/api:${CI_COMMIT_REF_SLUG} .
-
-docker-app:
-  stage: dockerize
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - cd api/target
-    - docker build -t ${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_REF_SLUG} .
-
-deploy-api:
-  stage: deploy
+  variables:
+    JAVA_MODULE: ""
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR/api/target --dockerfile $CI_PROJECT_DIR/api/target/Dockerfile --destination $CI_REGISTRY_IMAGE/api:${CI_COMMIT_REF_SLUG}
-#  script:
-#    - docker push ${CI_REGISTRY_IMAGE}/api:${CI_COMMIT_REF_SLUG}
+    - /kaniko/executor --context $CI_PROJECT_DIR/${JAVA_MODULE}/target --dockerfile $CI_PROJECT_DIR/${JAVA_MODULE}/target/Dockerfile --destination $CI_REGISTRY_IMAGE/${JAVA_MODULE}:${CI_COMMIT_REF_SLUG}
+#    - cd ${CI_REGISTRY_IMAGE}/${JAVA_MODULE}/target
+#    - docker build -t ${CI_REGISTRY_IMAGE}/${JAVA_MODULE}:${CI_COMMIT_REF_SLUG} .
 
-deploy-app:
-  stage: deploy
-  script:
-    - docker push ${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_REF_SLUG}
+docker-api:
+  <<: *dockerize
+  variables:
+    JAVA_MODULE: "api"
+
+docker-app:
+  <<: *dockerize
+  variables:
+    JAVA_MODULE: "app"
+
+#docker-api:
+#  stage: dockerize
+#  image:
+#    name: gcr.io/kaniko-project/executor:debug
+#    entrypoint: [""]
+#  script:
+#    - cd api/target
+#    - docker build -t ${CI_REGISTRY_IMAGE}/api:${CI_COMMIT_REF_SLUG} .
+#
+#docker-app:
+#  stage: dockerize
+#  image:
+#    name: gcr.io/kaniko-project/executor:debug
+#    entrypoint: [""]
+#  script:
+#    - cd $CI_PROJECT_DIR/api/target
+#    - docker build -t ${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_REF_SLUG} .
+
+#deploy-api:
+#  stage: deploy
+#  image:
+#    name: gcr.io/kaniko-project/executor:debug
+#    entrypoint: [""]
+#  script:
+#    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+#    - /kaniko/executor --context $CI_PROJECT_DIR/api/target --dockerfile $CI_PROJECT_DIR/api/target/Dockerfile --destination $CI_REGISTRY_IMAGE/api:${CI_COMMIT_REF_SLUG}
+##  script:
+##    - docker push ${CI_REGISTRY_IMAGE}/api:${CI_COMMIT_REF_SLUG}
+#
+#deploy-app:
+#  stage: deploy
+#  script:
+#    - docker push ${CI_REGISTRY_IMAGE}/app:${CI_COMMIT_REF_SLUG}
