@@ -8,7 +8,7 @@ java:
   image: maven:3.6.3-jdk-11
   script: mvn -q clean install
 
-docker-java: &dockerize
+.docker-java: &dockerize
   stage: dockerize
   variables:
     JAVA_MODULE: ""
@@ -17,7 +17,7 @@ docker-java: &dockerize
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR/${JAVA_MODULE}/target --dockerfile $CI_PROJECT_DIR/${JAVA_MODULE}/target/Dockerfile --destination $CI_REGISTRY_IMAGE/${JAVA_MODULE}:${CI_COMMIT_REF_SLUG}
+    - /kaniko/executor --context $CI_PROJECT_DIR/${JAVA_MODULE}/target --dockerfile Dockerfile --destination $CI_REGISTRY_IMAGE/${JAVA_MODULE}:${CI_COMMIT_REF_SLUG}
 #    - cd ${CI_REGISTRY_IMAGE}/${JAVA_MODULE}/target
 #    - docker build -t ${CI_REGISTRY_IMAGE}/${JAVA_MODULE}:${CI_COMMIT_REF_SLUG} .
 
