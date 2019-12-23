@@ -9,7 +9,7 @@ java:
   script: mvn -q clean install
   artifacts:
     paths:
-      - target/*.jar
+      - models/target/*.jar
       - api/target/*.jar
       - api/target/Dockerfile
       - app/target/*.jar
@@ -25,6 +25,8 @@ java:
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR/${JAVA_MODULE}/target --dockerfile Dockerfile --destination $CI_REGISTRY_IMAGE/${JAVA_MODULE}:${CI_COMMIT_REF_SLUG}
+  only:
+    - poc_knative
 #    - cd ${CI_REGISTRY_IMAGE}/${JAVA_MODULE}/target
 #    - docker build -t ${CI_REGISTRY_IMAGE}/${JAVA_MODULE}:${CI_COMMIT_REF_SLUG} .
 
