@@ -5,8 +5,8 @@ spring:
       base-path: "/api"
   datasource:
     username: "postgres"
-    password: "1iAlOmJ4b2tRB10Ek8pV8HM"
-    url: "jdbc:postgresql://163.172.90.123:31708/postgres"
+    password: "xxxx"
+    url: "jdbc:postgresql://xxxx:5432/postgres"
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 5
