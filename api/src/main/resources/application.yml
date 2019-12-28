@@ -1,0 +1,19 @@
+## default connection pool
+spring:
+  data:
+    rest:
+      base-path: "/api"
+  datasource:
+    username: "postgres"
+    password: "xxxx"
+    url: "jdbc:postgresql://xxxx:5432/postgres"
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+    driver-class-name: "org.postgresql.Driver"
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"

@@ -42,7 +42,7 @@ Send a sample
 
 Configuration can be done via classic Spring BOOT configuration.
 
-See [application.yml](src/main/resources/application.yml) for an example
+See [application.yml](app/src/main/resources/application.yml) for an example
 
 ## Input Message
 

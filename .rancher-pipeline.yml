@@ -9,16 +9,17 @@ stages:
     steps:
       - runScriptConfig:
           image: maven:3.6.3-jdk-11
-          shellScript: mvn -q clean install -Pkafka
-      - runScriptConfig:
-          image: maven:3.6.3-jdk-11
-          shellScript: mvn -q clean install -Prabbit
+          shellScript: mvn -q clean install
   - name: Docker image
     steps:
       - publishImageConfig:
-          dockerfilePath: ./target/Dockerfile
-          buildContext: ./target
-          tag: data-source-rss
+          dockerfilePath: ./api/target/Dockerfile
+          buildContext: ./api/target/
+          tag: data-source-rss-api
+      - publishImageConfig:
+          dockerfilePath: ./app/target/Dockerfile
+          buildContext: ./app/target/
+          tag: data-source-rss-app
           # Optionally push to remote registry
 #          pushRemote: true
 #          registry: ogdabou-dockerhub
@@ -28,7 +29,7 @@ stages:
 #          path: ./deployment.yaml
 # branch conditions for the pipeline
 branch:
-  include: [ master, feature/*]
+  include: [ master, feature/*, poc_knative]
   exclude: [ dev ]
 # timeout in minutes
 timeout: 30
