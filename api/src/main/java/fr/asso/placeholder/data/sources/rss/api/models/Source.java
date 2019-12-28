@@ -14,7 +14,7 @@ public class Source {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private boolean activated = true;
+    private boolean active = true;
     private String url;
     private String name;
 }
